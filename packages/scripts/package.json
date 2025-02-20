@@ -1,9 +1,9 @@
 {
-  "name": "@monorepo-template/scripts",
+  "name": "@nextwipe/scripts",
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
-    "@monorepo-template/core": "*",
+    "@nextwipe/core": "*",
     "sst": "*"
   },
   "scripts": {

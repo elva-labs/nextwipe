@@ -1,10 +1,15 @@
-import { Resource } from "sst";
-import { Handler } from "aws-lambda";
-import { Example } from "@monorepo-template/core/example";
+import { Hono } from "hono";
+import { handle } from "hono/aws-lambda";
+import { logger } from "hono/logger";
+import gameRoute from "./api/game";
 
-export const handler: Handler = async (_event) => {
-  return {
-    statusCode: 200,
-    body: `${Example.hello()} Linked to ${Resource.MyBucket.name}.`,
-  };
-};
+const app = new Hono().use(logger());
+
+const routes = app
+  // .route("/game", gameRoute) just add routes like this
+  // .route("/game", gameRoute)
+  .route("/game", gameRoute);
+
+export type AppType = typeof routes;
+
+export const handler = handle(app);

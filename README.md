@@ -1,45 +1,29 @@
-# Monorepo Template
+# NextWipe
 
-A template to create a monorepo SST v3 project. [Learn more](https://sst.dev/docs/set-up-a-monorepo).
-
-## Get started
-
-1. Use this template to [create your own repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-
-2. Clone the new repo.
-
-   ```bash
-   git clone <REPO_URL> MY_APP
-   cd MY_APP
-   ```
-
-3. Rename the files in the project to the name of your app.
-
-   ```bash
-   npx replace-in-file '/monorepo-template/g' 'MY_APP' '**/*.*' --verbose
-   ```
-
-4. Deploy!
-
-   ```bash
-   npm install
-   npx sst deploy
-   ```
-
-5. Optionally, enable [_git push to deploy_](https://sst.dev/docs/console/#autodeploy).
+NextWipe is a platform to identify and list upcoming seasons and wipes for games.
 
 ## Usage
 
-This template uses [npm Workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces). It has 3 packages to start with and you can add more it.
+### Let's get cracking
+
+Shit's easy to run. Just do `bun sst dev`. That's it.
+
+The AWS account used for this is `elva-örebro-dev`.
+
+Versioning:
+
+- Node.js 22
+- Bun 1.2 (or higher)
 
 1. `core/`
 
-   This is for any shared code. It's defined as modules. For example, there's the `Example` module.
+   This is for any shared code. It's defined as modules.
 
    ```ts
-   export module Example {
-     export function hello() {
-       return "Hello, world!";
+   export module Games {
+     export function get(gameId: string) {
+       // logic to get the game
+       return game;
      }
    }
    ```
@@ -47,7 +31,7 @@ This template uses [npm Workspaces](https://docs.npmjs.com/cli/v8/using-npm/work
    That you can use across other packages using.
 
    ```ts
-   import { Example } from "@aws-monorepo/core/example";
+   import { Games } from "@nextwipe/core/games";
 
    Example.hello();
    ```
@@ -64,11 +48,15 @@ This template uses [npm Workspaces](https://docs.npmjs.com/cli/v8/using-npm/work
 
 3. `scripts/`
 
-    This is for any scripts that you can run on your SST app using the `sst shell` CLI and [`tsx`](https://www.npmjs.com/package/tsx). For example, you can run the example script using:
+   This is for any scripts that you can run on your SST app using the `sst shell` CLI and [`tsx`](https://www.npmjs.com/package/tsx). For example, you can run the example script using:
 
    ```bash
    npm run shell src/example.ts
    ```
+
+4. `web/`
+
+   This is the React Router application which will be user facing.
 
 ### Infrastructure
 
@@ -76,6 +64,4 @@ The `infra/` directory allows you to logically split the infrastructure of your 
 
 In the template, we have an `api.ts`, and `storage.ts`. These export the created resources. And are imported in the `sst.config.ts`.
 
----
-
-**Join our community** [Discord](https://sst.dev/discord) | [YouTube](https://www.youtube.com/c/sst-dev) | [X.com](https://x.com/SST_dev)
+More information regarding the Monorepo can be found [here](https://sst.dev/docs/set-up-a-monorepo).
