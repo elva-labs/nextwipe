@@ -8,7 +8,7 @@ NextWipe is a platform to identify and list upcoming seasons and wipes for games
 
 Shit's easy to run. Just do `bun sst dev`. That's it.
 
-The AWS account used for this is `elva-örebro-dev`.
+The AWS account used for this is `elva-örebro-sandbox`.
 
 Versioning:
 
